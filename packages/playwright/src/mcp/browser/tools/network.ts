@@ -122,10 +122,10 @@ async function renderRequestDetails(request: playwright.Request, response: playw
             const parsed = JSON.parse(body);
             details.push(JSON.stringify(parsed, null, 2));
           } catch {
-            details.push(body.substring(0, 5000));
+            details.push(body);
           }
         } else {
-          details.push(body.substring(0, 5000));
+          details.push(body);
         }
       }
     } catch (error) {
