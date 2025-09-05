@@ -53,7 +53,7 @@ const requestDetails = defineTabTool({
   handle: async (tab, params, response) => {
     const requests = tab.requests();
     let foundRequest = false;
-    
+
     for (const [req, res] of requests.entries()) {
       if (req.url() === params.url) {
         foundRequest = true;
@@ -61,7 +61,7 @@ const requestDetails = defineTabTool({
         break;
       }
     }
-    
+
     if (!foundRequest) {
       response.addError(`No request found with URL: ${params.url}`);
     }
@@ -78,18 +78,18 @@ function renderRequest(request: playwright.Request, response: playwright.Respons
 
 async function renderRequestDetails(request: playwright.Request, response: playwright.Response | null, responseHandler: Response) {
   const details: string[] = [];
-  
+
   details.push('=== REQUEST ===');
   details.push(`URL: ${request.url()}`);
   details.push(`Method: ${request.method()}`);
   details.push(`Resource Type: ${request.resourceType()}`);
-  
+
   details.push('\n=== REQUEST HEADERS ===');
   const reqHeaders = await request.allHeaders();
   for (const [key, value] of Object.entries(reqHeaders)) {
     details.push(`${key}: ${value}`);
   }
-  
+
   const postData = request.postData();
   if (postData) {
     details.push('\n=== REQUEST BODY ===');
@@ -100,19 +100,18 @@ async function renderRequestDetails(request: playwright.Request, response: playw
       details.push(postData);
     }
   }
-  
+
   if (response) {
     details.push('\n=== RESPONSE ===');
     details.push(`Status: ${response.status()} ${response.statusText()}`);
     details.push(`OK: ${response.ok()}`);
-    details.push(`From Cache: ${response.fromServiceWorker()}`);
-    
+
     details.push('\n=== RESPONSE HEADERS ===');
     const resHeaders = await response.allHeaders();
     for (const [key, value] of Object.entries(resHeaders)) {
       details.push(`${key}: ${value}`);
     }
-    
+
     try {
       const contentType = resHeaders['content-type'] || '';
       if (contentType.includes('application/json') || contentType.includes('text/')) {
@@ -137,7 +136,7 @@ async function renderRequestDetails(request: playwright.Request, response: playw
     details.push('\n=== NO RESPONSE ===');
     details.push('Request has not received a response yet or failed');
   }
-  
+
   responseHandler.addResult(details.join('\n'));
 }
 
