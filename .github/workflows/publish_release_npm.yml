@@ -26,8 +26,8 @@ jobs:
     - run: utils/publish_all_packages.sh --release-candidate
       if: ${{ github.event.release.prerelease }}
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        AUTHTOKEN: ${{ secrets.AUTHTOKEN }}
     - run: utils/publish_all_packages.sh --release
       if: ${{ !github.event.release.prerelease }}
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        AUTHTOKEN: ${{ secrets.AUTHTOKEN }}
