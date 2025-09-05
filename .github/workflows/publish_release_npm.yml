@@ -11,7 +11,7 @@ jobs:
   publish-npm-release:
     name: "publish to NPM"
     runs-on: ubuntu-24.04
-    if: github.repository == 'microsoft/playwright'
+    if: github.repository == 'DokiDoki1103/playwright'
     permissions:
       contents: read
       id-token: write
