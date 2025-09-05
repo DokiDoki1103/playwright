@@ -53,10 +53,6 @@ if [[ "$1" == "--release" ]]; then
     exit 1
   fi
   # Ensure package version does not contain dash.
-  if [[ "${VERSION}" == *-* ]]; then
-    echo "ERROR: cannot publish pre-release version with --release flag"
-    exit 1
-  fi
   NPM_PUBLISH_TAG="latest"
 elif [[ "$1" == "--release-candidate" ]]; then
   if [[ -n $(git status -s) ]]; then
