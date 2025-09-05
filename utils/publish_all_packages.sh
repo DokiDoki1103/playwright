@@ -36,10 +36,7 @@ if ! command -v npm >/dev/null; then
   exit 1
 fi
 
-if ! npm whoami >/dev/null 2>&1; then
-  echo "ERROR: NPM is not logged in."
-  exit 1
-fi
+
 
 cd ..
 
