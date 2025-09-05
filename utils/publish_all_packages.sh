@@ -90,7 +90,7 @@ do
   echo ${package}
   npm config set registry=https://packages.aliyun.com/64d24048bebb3e7debf55197/npm/npm-registry/
   npm config set //packages.aliyun.com/64d24048bebb3e7debf55197/npm/npm-registry/:_authToken=${AUTHTOKEN}
-  npm publish --access=public ${package} --tag="${NPM_PUBLISH_TAG}" --provenance
+  npm publish --access=public ${package} --tag="${NPM_PUBLISH_TAG}"
 done
 
 echo "Done."
